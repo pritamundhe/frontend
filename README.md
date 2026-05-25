@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 # 🎵 Moodify AI — Conversational Music Recommendation Engine
 
 > An emotionally intelligent AI that chats with you, reads your vibe, and curates the perfect Spotify playlist.
@@ -130,3 +131,6 @@ VibeflowAI/
 - The Spotify **Client Credentials** flow is used (no user login required for recommendations)
 - Sessions are stored in-memory during runtime + persisted to MongoDB if configured
 - The ML classifier enriches GPT's output when confidence is below 0.7
+=======
+# VibeflowAI
+>>>>>>> 7895f8aa02f81e42b825419fe4004fd28cb0510e
