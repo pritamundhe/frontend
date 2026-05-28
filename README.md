@@ -1,5 +1,5 @@
 <<<<<<< HEAD
-# 🎵 Moodify AI — Conversational Music Recommendation Engine
+# 🎵 VibeflowAI — Conversational Music Recommendation Engine
 
 > An emotionally intelligent AI that chats with you, reads your vibe, and curates the perfect Spotify playlist.
 
@@ -7,7 +7,7 @@
 
 ## ✨ Features
 
-- 💬 **Natural Conversation** — Moodify talks with you like a friend, not a survey
+- 💬 **Natural Conversation** — VibeflowAI talks with you like a friend, not a survey
 - 🧠 **GPT-4o Powered** — Deep emotional understanding from your words
 - 🤖 **Scikit-learn ML** — KNN classifier enriches mood → music vibe mapping
 - 🎧 **Spotify Integration** — Real track recommendations via Spotify Web API

@@ -28,7 +28,7 @@ async def lifespan(app: FastAPI):
 
 
 app = FastAPI(
-    title="Moodify AI",
+    title="VibeflowAI",
     description="Intelligent conversational music recommendation engine",
     version="1.0.0",
     lifespan=lifespan,
@@ -46,9 +46,9 @@ app.add_middleware(
 
 # ─── Routes ───────────────────────────────────────────────────────────────────
 
-@app.get("/health")
+@app.get("/")
 async def health():
-    return {"status": "ok", "service": "Moodify AI"}
+    return {"status": "ok", "service": "VibeflowAI"}
 
 
 @app.post("/api/session/new")
@@ -69,7 +69,7 @@ async def new_session():
 
 @app.post("/api/chat", response_model=ChatResponse)
 async def chat(request: ChatRequest):
-    """Send a message and receive Moodify's reply."""
+    """Send a message and receive VibeflowAI's reply."""
     session_id = request.session_id
 
     if session_id not in sessions:

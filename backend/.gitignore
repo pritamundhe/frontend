@@ -1,0 +1,30 @@
+# Python
+__pycache__/
+*.py[cod]
+*.egg
+*.egg-info/
+dist/
+build/
+.eggs/
+venv/
+env/
+.venv/
+
+# Environment
+backend/.env
+.env
+
+# IDE
+.idea/
+.vscode/
+*.swp
+
+# Spotipy cache
+.cache
+.cache-*
+
+# MongoDB
+*.log
+
+# Node (if used)
+node_modules/

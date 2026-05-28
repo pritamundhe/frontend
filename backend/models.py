@@ -32,6 +32,7 @@ class MoodProfile(BaseModel):
     recommended_vibe: str
     emotional_state_summary: str
     confidence_score: float
+    search_keywords: Optional[str] = None
 
 
 class SpotifyTrack(BaseModel):
