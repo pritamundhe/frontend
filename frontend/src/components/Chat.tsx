@@ -12,6 +12,7 @@ interface ChatProps {
 export const Chat: React.FC<ChatProps> = ({ messages, onSendMessage, isTyping }) => {
   const [input, setInput] = useState('');
   const messagesEndRef = useRef<HTMLDivElement>(null);
+  const inputRef = useRef<HTMLInputElement>(null);
 
   const scrollToBottom = () => {
     messagesEndRef.current?.scrollIntoView({ behavior: 'smooth' });
@@ -20,6 +21,12 @@ export const Chat: React.FC<ChatProps> = ({ messages, onSendMessage, isTyping })
   useEffect(() => {
     scrollToBottom();
   }, [messages, isTyping]);
+
+  useEffect(() => {
+    if (!isTyping) {
+      inputRef.current?.focus();
+    }
+  }, [isTyping]);
 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
@@ -166,11 +173,13 @@ export const Chat: React.FC<ChatProps> = ({ messages, onSendMessage, isTyping })
         marginTop: 'auto'
       }}>
         <input
+          ref={inputRef}
           type="text"
           value={input}
           onChange={(e) => setInput(e.target.value)}
           placeholder="Share how you're feeling..."
           disabled={isTyping}
+          autoFocus
           style={{
             width: '100%',
             background: 'var(--bg-surface)',
