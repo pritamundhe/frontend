@@ -140,7 +140,7 @@ function App() {
 
   return (
     <div style={{ display: 'flex', minHeight: '100vh', background: 'var(--bg-dark)' }}>
-      {appState !== 'landing' && (
+      {appState !== 'landing' && appState !== 'dashboard' && (
         <div style={{ width: '260px', background: '#0a0a0a', borderRight: '1px solid var(--border-light)', display: 'flex', flexDirection: 'column', flexShrink: 0 }}>
           <div style={{ padding: '1rem' }}>
             <button 
@@ -198,7 +198,18 @@ function App() {
         )}
         
         {appState === 'dashboard' && moodProfile && (
-          <Dashboard moodProfile={moodProfile} recommendations={recommendations} messages={messages} />
+          <Dashboard 
+            moodProfile={moodProfile} 
+            recommendations={recommendations} 
+            messages={messages} 
+            onNewChat={() => {
+              setSessionId(null);
+              setMessages([]);
+              setMoodProfile(null);
+              setRecommendations(null);
+              setAppState('landing');
+            }}
+          />
         )}
       </div>
     </div>

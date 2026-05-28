@@ -7,9 +7,10 @@ interface DashboardProps {
   moodProfile: MoodProfile;
   recommendations: RecommendationsResponse | null;
   messages: Message[];
+  onNewChat: () => void;
 }
 
-export const Dashboard: React.FC<DashboardProps> = ({ moodProfile, recommendations, messages }) => {
+export const Dashboard: React.FC<DashboardProps> = ({ moodProfile, recommendations, messages, onNewChat }) => {
   return (
     <div style={{
       maxWidth: '1200px',
@@ -22,22 +23,44 @@ export const Dashboard: React.FC<DashboardProps> = ({ moodProfile, recommendatio
     }}>
       {/* Main Content: Recommendations */}
       <div style={{ paddingBottom: '4rem' }}>
-        <header style={{ marginBottom: '3rem' }}>
-          <h1 style={{ fontSize: '2.5rem', marginBottom: '0.5rem' }}>{recommendations?.playlist_title || 'Your Personalized Playlist'}</h1>
+        <header style={{ marginBottom: '3rem', position: 'relative' }}>
+          <button
+            onClick={onNewChat}
+            style={{ 
+              position: 'absolute', 
+              top: '-2rem', 
+              left: 0, 
+              background: 'transparent', 
+              color: 'var(--text-secondary)', 
+              border: 'none', 
+              cursor: 'pointer', 
+              padding: '0.5rem 0',
+              fontSize: '0.875rem',
+              display: 'flex',
+              alignItems: 'center',
+              gap: '0.5rem'
+            }}
+          >
+            ← Start New Vibe
+          </button>
+          <h1 style={{ fontSize: '2.5rem', marginBottom: '0.5rem', marginTop: '2rem' }}>{recommendations?.playlist_title || 'Your Personalized Playlist'}</h1>
           <p style={{ color: 'var(--text-secondary)' }}>{recommendations?.playlist_description || 'Based on your current vibe'}</p>
         </header>
 
         {recommendations?.tracks ? (
           <div style={{ display: 'flex', flexDirection: 'column', gap: '1rem' }}>
-            <iframe
-              src={`https://open.spotify.com/embed/trackset/${encodeURIComponent(recommendations.playlist_title || 'Playlist')}/${recommendations.tracks.map(t => t.id).join(',')}?theme=0`}
-              width="100%"
-              height="500"
-              frameBorder="0"
-              allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture"
-              loading="lazy"
-              style={{ borderRadius: '12px', background: 'var(--bg-surface)' }}
-            ></iframe>
+            {recommendations.tracks.map(track => (
+              <iframe
+                key={track.id}
+                src={`https://open.spotify.com/embed/track/${track.id}?theme=0`}
+                width="100%"
+                height="152"
+                frameBorder="0"
+                allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture"
+                loading="lazy"
+                style={{ borderRadius: '12px', background: 'var(--bg-surface)' }}
+              ></iframe>
+            ))}
           </div>
         ) : (
           <div className="glass" style={{ padding: '3rem', textAlign: 'center', borderRadius: '1rem' }}>
